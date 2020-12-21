@@ -2,7 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
-let {generateMessage} = require('./utils/message');
+let {generateMessage, generateLocation} = require('./utils/message');
 
 const publicPath = path.join(__dirname, '../public');
 
@@ -23,6 +23,11 @@ io.on('connection', (socket) => {
     socket.on('createMessage', (message, callback) => {
         console.log('create message', message);
         io.emit('newMessage', generateMessage(message.from, message.text));
+        callback(true);
+    });
+
+    socket.on('clientLocation', (coords, callback) => {
+        io.emit('serverSendLocation', generateLocation('admin', coords.latitude, coords.longitude));
         callback(true);
     });
 
