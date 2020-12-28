@@ -7,6 +7,10 @@
     font-size: .95rem;
 }
 
+/* body {
+    white-space: pre-wrap;
+} */
+
 ul,
 li {
     list-style-position: inside;
