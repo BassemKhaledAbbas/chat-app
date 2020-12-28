@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('newMessage', generateMessage("admin", "new user Joined"));
 
     socket.on('createMessage', (message, callback) => {
-        console.log('create message', message);
+        // console.log('create message', message);
         io.emit('newMessage', generateMessage(message.from, message.text));
         callback();
     });
